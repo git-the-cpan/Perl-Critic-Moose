@@ -22,22 +22,22 @@ name: Perl-Critic-Moose
 provides:
   Perl::Critic::Moose:
     file: lib/Perl/Critic/Moose.pm
-    version: '1.00'
+    version: '1.01'
   Perl::Critic::Policy::Moose::ProhibitDESTROYMethod:
     file: lib/Perl/Critic/Policy/Moose/ProhibitDESTROYMethod.pm
-    version: '1.00'
+    version: '1.01'
   Perl::Critic::Policy::Moose::ProhibitMultipleWiths:
     file: lib/Perl/Critic/Policy/Moose/ProhibitMultipleWiths.pm
-    version: '1.00'
+    version: '1.01'
   Perl::Critic::Policy::Moose::ProhibitNewMethod:
     file: lib/Perl/Critic/Policy/Moose/ProhibitNewMethod.pm
-    version: '1.00'
+    version: '1.01'
   Perl::Critic::Policy::Moose::RequireCleanNamespace:
     file: lib/Perl/Critic/Policy/Moose/RequireCleanNamespace.pm
-    version: '1.00'
+    version: '1.01'
   Perl::Critic::Policy::Moose::RequireMakeImmutable:
     file: lib/Perl/Critic/Policy/Moose/RequireMakeImmutable.pm
-    version: '1.00'
+    version: '1.01'
 requires:
   Perl::Critic::Policy: '0'
   Perl::Critic::Utils: '0'
@@ -51,7 +51,7 @@ resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Perl-Critic-Moose
   homepage: http://metacpan.org/release/Perl-Critic-Moose
   repository: git://github.com/moose/Perl-Critic-Moose.git
-version: '1.00'
+version: '1.01'
 x_Dist_Zilla:
   perl:
     version: '5.016003'
@@ -434,7 +434,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: v1.00
+          tag: v1.01
           tag_format: v%v
           tag_message: v%v
           time_zone: local

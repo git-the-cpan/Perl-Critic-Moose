@@ -1,5 +1,5 @@
 package Perl::Critic::Policy::Moose::RequireMakeImmutable;
-$Perl::Critic::Policy::Moose::RequireMakeImmutable::VERSION = '1.00';
+$Perl::Critic::Policy::Moose::RequireMakeImmutable::VERSION = '1.01';
 use strict;
 use warnings;
 
@@ -98,7 +98,7 @@ Perl::Critic::Policy::Moose::RequireMakeImmutable - Ensure that you've made your
 
 =head1 VERSION
 
-version 1.00
+version 1.01
 
 =head1 DESCRIPTION
 

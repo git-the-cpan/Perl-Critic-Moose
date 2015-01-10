@@ -1,5 +1,5 @@
 package Perl::Critic::Policy::Moose::ProhibitNewMethod;
-$Perl::Critic::Policy::Moose::ProhibitNewMethod::VERSION = '1.00';
+$Perl::Critic::Policy::Moose::ProhibitNewMethod::VERSION = '1.01';
 use strict;
 use warnings;
 
@@ -69,7 +69,7 @@ Perl::Critic::Policy::Moose::ProhibitNewMethod - Don't override Moose's standard
 
 =head1 VERSION
 
-version 1.00
+version 1.01
 
 =head1 DESCRIPTION
 

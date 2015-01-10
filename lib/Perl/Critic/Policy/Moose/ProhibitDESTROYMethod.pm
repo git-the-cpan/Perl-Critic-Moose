@@ -1,5 +1,5 @@
 package Perl::Critic::Policy::Moose::ProhibitDESTROYMethod;
-$Perl::Critic::Policy::Moose::ProhibitDESTROYMethod::VERSION = '1.00';
+$Perl::Critic::Policy::Moose::ProhibitDESTROYMethod::VERSION = '1.01';
 use strict;
 use warnings;
 
@@ -94,7 +94,7 @@ Perl::Critic::Policy::Moose::ProhibitDESTROYMethod - Use DEMOLISH instead of DES
 
 =head1 VERSION
 
-version 1.00
+version 1.01
 
 =head1 DESCRIPTION
 
