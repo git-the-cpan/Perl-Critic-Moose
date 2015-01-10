@@ -3,7 +3,7 @@
 #   $Author$
 # $Revision$
 
-## name Passing without parens
+## name Basic passing for Moose.
 ## failures 0
 ## cut
 
@@ -14,33 +14,60 @@ has foo => (
     isa => 'Str',
 );
 
-__PACKAGE__->meta->make_immutable;
+sub DEMOLISH {}
 
 
-## name Passing with parens
-## failures 0
-## cut
-
-use Moose;
-
-has foo => (
-    is  => 'rw',
-    isa => 'Str',
-);
-
-__PACKAGE__->meta()->make_immutable();
-
-
-## name Basic failure
+## name Basic failure for Moose.
 ## failures 1
 ## cut
 
 use Moose;
 
+sub DESTROY {}
+
+
+## name Basic passing for Moose::Role.
+## failures 0
+## cut
+
+use Moose::Role;
+
 has foo => (
     is  => 'rw',
     isa => 'Str',
 );
+
+sub DEMOLISH {}
+
+
+## name Basic failure for Moose::Role.
+## failures 1
+## cut
+
+use Moose::Role;
+
+sub DESTROY {}
+
+
+## name Multi-package passing.
+## failures 0
+## cut
+
+use Moose;
+
+package Foo;
+
+sub DESTROY {}
+
+
+## name Failure for custom module.
+## failures 1
+## parms { equivalent_modules => 'Foo' }
+## cut
+
+use Foo;
+
+sub DESTROY {}
 
 
 # Local Variables:

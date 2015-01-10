@@ -1,7 +1,7 @@
-#      $URL: http://perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic-Moose/t/Moose/ProhibitNewMethod.run $
-#     $Date: 2009-04-24 23:15:59 -0500 (Fri, 24 Apr 2009) $
-#   $Author: clonezone $
-# $Revision: 3292 $
+#      $URL$
+#     $Date$
+#   $Author$
+# $Revision$
 
 ## name Basic passing
 ## failures 0

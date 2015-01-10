@@ -1,18 +1,17 @@
-package Perl::Critic::Policy::Moose::ProhibitMultipleWiths;
-$Perl::Critic::Policy::Moose::ProhibitMultipleWiths::VERSION = '1.00';
+package Perl::Critic::Policy::Moose::ProhibitDESTROYMethod;
+$Perl::Critic::Policy::Moose::ProhibitDESTROYMethod::VERSION = '1.00';
 use strict;
 use warnings;
 
 use Readonly ();
 
 use Perl::Critic::Utils qw< :booleans :severities $EMPTY >;
-use Perl::Critic::Utils::PPI qw< is_ppi_generic_statement >;
 
 use base 'Perl::Critic::Policy';
 
-Readonly::Scalar my $DESCRIPTION => 'Multiple calls to with() were made.';
-Readonly::Scalar my $EXPLANATION =>
-    q<Roles cannot protect against name conflicts if they are not composed.>;
+Readonly::Scalar my $DESCRIPTION =>
+    q<"DESTROY" method/subroutine declared in a Moose class.>;
+Readonly::Scalar my $EXPLANATION => q<Use DEMOLISH for your destructors.>;
 
 sub supported_parameters {
     return (
@@ -27,8 +26,8 @@ sub supported_parameters {
     );
 }
 
-sub default_severity { return $SEVERITY_HIGH; }
-sub default_themes   { return qw( bugs moose roles ); }
+sub default_severity { return $SEVERITY_MEDIUM; }
+sub default_themes   { return qw< moose bugs >; }
 sub applies_to       { return 'PPI::Document' }
 
 sub prepare_to_scan_document {
@@ -58,37 +57,32 @@ sub violates {
             next SUBDOCUMENT
                 if not $self->_is_interesting_document($subdocument);
 
-            my $with_statements = $subdocument->find( \&_is_with_statement );
-
-            next SUBDOCUMENT if not $with_statements;
-            next SUBDOCUMENT if @{$with_statements} < 2;
-
-            my $second_with = $with_statements->[1];
-            push
-                @violations,
-                $self->violation( $DESCRIPTION, $EXPLANATION, $second_with );
+            if ( my $destructor
+                = $subdocument->find_first( \&_is_destructor ) ) {
+                push
+                    @violations,
+                    $self->violation(
+                    $DESCRIPTION, $EXPLANATION,
+                    $destructor
+                    );
+            }
         }
     }
 
     return @violations;
 }
 
-sub _is_with_statement {
+sub _is_destructor {
     my ( undef, $element ) = @_;
 
-    return $FALSE if not is_ppi_generic_statement($element);
+    return $FALSE if not $element->isa('PPI::Statement::Sub');
 
-    my $current_token = $element->schild(0);
-    return $FALSE if not $current_token;
-    return $FALSE if not $current_token->isa('PPI::Token::Word');
-    return $FALSE if $current_token->content() ne 'with';
-
-    return $TRUE;
+    return $element->name() eq 'DESTROY';
 }
 
 1;
 
-# ABSTRACT: Require role composition
+# ABSTRACT: Use DEMOLISH instead of DESTROY
 
 __END__
 
@@ -96,7 +90,7 @@ __END__
 
 =head1 NAME
 
-Perl::Critic::Policy::Moose::ProhibitMultipleWiths - Require role composition
+Perl::Critic::Policy::Moose::ProhibitDESTROYMethod - Use DEMOLISH instead of DESTROY
 
 =head1 VERSION
 
@@ -104,27 +98,29 @@ version 1.00
 
 =head1 DESCRIPTION
 
-L<Moose::Role>s are, among other things, the answer to name conflicts plaguing
-multiple inheritance and mix-ins. However, to enjoy this protection, you must
-compose your roles together. Roles do not generate conflicts if they are
-consumed individually.
-
-Pass all of your roles to a single L<with|Moose/with> statement.
+Getting the order of destructor execution correct with inheritance involved is
+difficult. Let L<Moose> take care of it for you by putting your cleanup code
+into a C<DEMOLISH()> method instead of a C<DESTROY()> method.
 
     # ok
     package Foo;
 
     use Moose::Role;
 
-    with qw< Bar Baz >;
+    sub DEMOLISH {
+        ...
+    }
 
     # not ok
     package Foo;
 
     use Moose::Role;
 
-    with 'Bar';
-    with 'Baz';
+    sub DESTROY {
+        ...
+    }
+
+=for stopwords destructor
 
 =head1 AFFILIATION
 
@@ -137,7 +133,7 @@ modules that should be treated the same as L<Moose> and L<Moose::Role>, if,
 say, you were doing something with L<Moose::Exporter>. For example, if you
 were to have this in your F<.perlcriticrc> file:
 
-    [Moose::ProhibitMultipleWiths]
+    [Moose::ProhibitDESTROYMethod]
     equivalent_modules = Foo Bar
 
 then the following code would result in a violation:
@@ -146,8 +142,13 @@ then the following code would result in a violation:
 
     use Bar;
 
-    with 'Bing';
-    with 'Bong';
+    sub DESTROY {
+        ...
+    }
+
+=head1 SEE ALSO
+
+L<Moose::Manual::Construction>
 
 =head1 AUTHORS
 

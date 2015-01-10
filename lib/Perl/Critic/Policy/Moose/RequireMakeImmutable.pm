@@ -1,16 +1,7 @@
-#      $URL: http://perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic-Moose/lib/Perl/Critic/Policy/Moose/RequireMakeImmutable.pm $
-#     $Date: 2009-05-15 19:35:37 -0500 (Fri, 15 May 2009) $
-#   $Author: clonezone $
-# $Revision: 3336 $
-
 package Perl::Critic::Policy::Moose::RequireMakeImmutable;
-
-use 5.008;  # Moose's minimum version.
-
+$Perl::Critic::Policy::Moose::RequireMakeImmutable::VERSION = '1.00';
 use strict;
 use warnings;
-
-our $VERSION = '0.999_002';
 
 use Readonly ();
 
@@ -19,25 +10,22 @@ use Perl::Critic::Utils::PPI qw< is_ppi_generic_statement >;
 
 use base 'Perl::Critic::Policy';
 
-
 Readonly::Scalar my $DESCRIPTION => 'No call was made to make_immutable().';
 Readonly::Scalar my $EXPLANATION =>
     q<Moose can't optimize itself if classes remain mutable.>;
 
-
-sub supported_parameters { return ();                       }
-sub default_severity     { return $SEVERITY_MEDIUM;         }
-sub default_themes       { return qw( moose performance );  }
-sub applies_to           { return 'PPI::Document'           }
-
+sub supported_parameters { return (); }
+sub default_severity     { return $SEVERITY_MEDIUM; }
+sub default_themes       { return qw( moose performance ); }
+sub applies_to           { return 'PPI::Document' }
 
 sub prepare_to_scan_document {
-    my ($self, $document) = @_;
+    my ( $self, $document ) = @_;
 
     # Tech debt: duplicate code.
     return $document->find_any(
         sub {
-            my (undef, $element) = @_;
+            my ( undef, $element ) = @_;
 
             return $FALSE if not $element->isa('PPI::Statement::Include');
             return $FALSE if not $element->type() eq 'use';
@@ -47,15 +35,14 @@ sub prepare_to_scan_document {
             return $module eq 'Moose';
         }
     );
-} # end prepare_to_scan_document()
-
+}
 
 sub violates {
-    my ($self, undef, $document) = @_;
+    my ( $self, undef, $document ) = @_;
 
     my $makes_immutable = $document->find_any(
         sub {
-            my (undef, $element) = @_;
+            my ( undef, $element ) = @_;
 
             return $FALSE if not is_ppi_generic_statement($element);
 
@@ -76,7 +63,7 @@ sub violates {
 
             $current_token = $current_token->snext_sibling();
             return $FALSE if not $current_token;
-            if ( $current_token->isa('PPI::Structure::List' ) ) {
+            if ( $current_token->isa('PPI::Structure::List') ) {
                 $current_token = $current_token->snext_sibling();
                 return $FALSE if not $current_token;
             }
@@ -94,11 +81,12 @@ sub violates {
     );
 
     return if $makes_immutable;
-    return $self->violation($DESCRIPTION, $EXPLANATION, $document);
-} # end violates()
-
+    return $self->violation( $DESCRIPTION, $EXPLANATION, $document );
+}
 
 1;
+
+# ABSTRACT: Ensure that you've made your Moose code fast
 
 __END__
 
@@ -106,96 +94,48 @@ __END__
 
 =head1 NAME
 
-Perl::Critic::Policy::Moose::RequireMakeImmutable - Make your Moose code fast.
+Perl::Critic::Policy::Moose::RequireMakeImmutable - Ensure that you've made your Moose code fast
 
+=head1 VERSION
+
+version 1.00
+
+=head1 DESCRIPTION
+
+L<Moose> is very flexible. That flexibility comes at a performance cost. You
+can ameliorate some of that cost by telling Moose when you are done putting
+your classes together.
+
+Thus, if you C<use Moose>, this policy requires that you do
+C<< __PACKAGE__->meta()->make_immutable() >>.
 
 =head1 AFFILIATION
 
 This policy is part of L<Perl::Critic::Moose>.
 
-
-=head1 VERSION
-
-This document describes Perl::Critic::Policy::Moose::RequireMakeImmutable
-version 0.999_002.
-
-
-=head1 DESCRIPTION
-
-L<Moose> is very flexible.  That flexibility comes at a performance cost.  You
-can ameliorate most of it by telling Moose when you are done putting your
-classes together.
-
-Thus, if you C<use Moose>, this policy requires that you do
-C<< __PACKAGE__->meta()->make_immutable() >>.
-
-
 =head1 CONFIGURATION
 
 This policy has no configuration options beyond the standard ones.
 
+=head1 AUTHORS
 
-=head1 SEE ALSO
+=over 4
 
-L<http://search.cpan.org/dist/Moose/lib/Moose/Cookbook/Basics/Recipe7.pod>
+=item *
 
+Elliot Shank <perl@galumph.com>
 
-=head1 BUGS AND LIMITATIONS
+=item *
 
-Right now this assumes that you've only got one C<package> statement in your
-code.  It will get things wrong if you create multiple classes in a single
-file.
+Dave Rolsky <autarch@urth.org>
 
-Please report any bugs or feature requests to
-C<bug-perl-critic-moose@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org>.
+=back
 
+=head1 COPYRIGHT AND LICENSE
 
-=head1 AUTHOR
+This software is copyright (c) 2008 - 2015 by Elliot Shank.
 
-Elliot Shank  C<< <perl@galumph.com> >>
-
-
-=head1 COPYRIGHT
-
-Copyright (c)2008-2009, Elliot Shank C<< <perl@galumph.com> >>. Some rights
-reserved.
-
-This module is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself. See L<perlartistic>.
-
-
-=head1 DISCLAIMER OF WARRANTY
-
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE
-SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE
-STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE
-SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND
-PERFORMANCE OF THE SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE,
-YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.
-
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY
-COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE
-SOFTWARE AS PERMITTED BY THE ABOVE LICENSE, BE LIABLE TO YOU FOR DAMAGES,
-INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING
-OUT OF THE USE OR INABILITY TO USE THE SOFTWARE (INCLUDING BUT NOT LIMITED TO
-LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
-THIRD PARTIES OR A FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER
-SOFTWARE), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGES.
-
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
-
-# Local Variables:
-#   mode: cperl
-#   cperl-indent-level: 4
-#   fill-column: 78
-#   indent-tabs-mode: nil
-#   c-indentation-style: bsd
-# End:
-# setup vim: set filetype=perl tabstop=4 softtabstop=4 expandtab :
-# setup vim: set shiftwidth=4 shiftround textwidth=78 nowrap autoindent :
-# setup vim: set foldmethod=indent foldlevel=0 :

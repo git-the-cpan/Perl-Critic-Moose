@@ -1,7 +1,7 @@
-#      $URL: http://perlcritic.tigris.org/svn/perlcritic/trunk/distributions/Perl-Critic-Moose/t/Moose/RequireCleanNamespace.run $
-#     $Date: 2008-12-21 13:50:35 -0600 (Sun, 21 Dec 2008) $
-#   $Author: clonezone $
-# $Revision: 2921 $
+#      $URL$
+#     $Date$
+#   $Author$
+# $Revision$
 
 ## name Basic passing - Moose
 ## failures 0
