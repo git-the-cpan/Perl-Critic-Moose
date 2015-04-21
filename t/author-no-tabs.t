@@ -9,7 +9,7 @@ BEGIN {
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::NoTabs 0.09
+# this test was generated with Dist::Zilla::Plugin::Test::NoTabs 0.14
 
 use Test::More 0.88;
 use Test::NoTabs;
@@ -38,7 +38,8 @@ my @files = (
     't/release-pod-no404s.t',
     't/release-pod-syntax.t',
     't/release-portability.t',
-    't/release-synopsis.t'
+    't/release-synopsis.t',
+    't/release-test-version.t'
 );
 
 notabs_ok($_) foreach @files;

@@ -1,72 +1,77 @@
-# NAME
+NAME
 
-Perl::Critic::Moose - Policies for Perl::Critic concerned with using Moose
+    Perl::Critic::Moose - Policies for Perl::Critic concerned with using
+    Moose
 
-# VERSION
+VERSION
 
-version 1.01
+    version 1.02
 
-# DESCRIPTION
+DESCRIPTION
 
-The included policies are:
+    The included policies are:
 
-- [Perl::Critic::Policy::Moose::ProhibitDESTROYMethod](https://metacpan.org/pod/Perl::Critic::Policy::Moose::ProhibitDESTROYMethod)
+    Perl::Critic::Policy::Moose::ProhibitDESTROYMethod
 
-    Use `DEMOLISH()` instead of `DESTROY()`. \[Severity: 3\]
+      Use DEMOLISH() instead of DESTROY(). [Severity: 3]
 
-- [Perl::Critic::Policy::Moose::ProhibitMultipleWiths](https://metacpan.org/pod/Perl::Critic::Policy::Moose::ProhibitMultipleWiths)
+    Perl::Critic::Policy::Moose::ProhibitMultipleWiths
 
-    Compose your roles to enjoy safe composition. \[Severity: 4\]
+      Compose your roles to enjoy safe composition. [Severity: 4]
 
-- [Perl::Critic::Policy::Moose::ProhibitNewMethod](https://metacpan.org/pod/Perl::Critic::Policy::Moose::ProhibitNewMethod)
+    Perl::Critic::Policy::Moose::ProhibitNewMethod
 
-    Don't override the built-in constructors. \[Severity: 4\]
+      Don't override the built-in constructors. [Severity: 4]
 
-- [Perl::Critic::Policy::Moose::RequireCleanNamespace](https://metacpan.org/pod/Perl::Critic::Policy::Moose::RequireCleanNamespace)
+    Perl::Critic::Policy::Moose::RequireCleanNamespace
 
-    Require removing implementation details from you packages. \[Severity: 3\]
+      Require removing implementation details from you packages. [Severity:
+      3]
 
-- [Perl::Critic::Policy::Moose::RequireMakeImmutable](https://metacpan.org/pod/Perl::Critic::Policy::Moose::RequireMakeImmutable)
+    Perl::Critic::Policy::Moose::RequireMakeImmutable
 
-    Increase performance by freezing your class structures with
-    `__PACKAGE__->meta()->make_immutable()`. \[Severity: 3\]
+      Increase performance by freezing your class structures with
+      __PACKAGE__->meta()->make_immutable(). [Severity: 3]
 
-# DESCRIPTION
+DESCRIPTION
 
-Some [Perl::Critic](https://metacpan.org/pod/Perl::Critic) policies that will help you keep your code in good shape
-with regards to [Moose](https://metacpan.org/pod/Moose).
+    Some Perl::Critic policies that will help you keep your code in good
+    shape with regards to Moose.
 
-# AFFILIATION
+AFFILIATION
 
-This module has no functionality, but instead contains documentation for this
-distribution and acts as a means of pulling other modules into a bundle. All
-of the Policy modules contained herein will have an "AFFILIATION" section
-announcing their participation in this grouping.
+    This module has no functionality, but instead contains documentation
+    for this distribution and acts as a means of pulling other modules into
+    a bundle. All of the Policy modules contained herein will have an
+    "AFFILIATION" section announcing their participation in this grouping.
 
-# CONFIGURATION AND ENVIRONMENT
+CONFIGURATION AND ENVIRONMENT
 
-All policies included are in the "moose" theme. See the [Perl::Critic](https://metacpan.org/pod/Perl::Critic)
-documentation for how to make use of this.
+    All policies included are in the "moose" theme. See the Perl::Critic
+    documentation for how to make use of this.
 
-# BUGS AND LIMITATIONS
+BUGS AND LIMITATIONS
 
-Please report any bugs or feature requests to
-`bug-perl-critic-moose@rt.cpan.org`, or through the web interface at
-[http://rt.cpan.org](http://rt.cpan.org).
+    Please report any bugs or feature requests to
+    bug-perl-critic-moose@rt.cpan.org, or through the web interface at
+    http://rt.cpan.org.
 
-# AUTHORS
+AUTHORS
 
-- Elliot Shank <perl@galumph.com>
-- Dave Rolsky <autarch@urth.org>
+      * Elliot Shank <perl@galumph.com>
 
-# CONTRIBUTORS
+      * Dave Rolsky <autarch@urth.org>
 
-- Jeffrey Ryan Thalhammer <jeff@thaljef.org>
-- Shawn Moore <cpan@sartak.org>
+CONTRIBUTORS
 
-# COPYRIGHT AND LICENSE
+      * Jeffrey Ryan Thalhammer <jeff@thaljef.org>
 
-This software is copyright (c) 2008 - 2015 by Elliot Shank.
+      * Shawn Moore <cpan@sartak.org>
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+COPYRIGHT AND LICENSE
+
+    This software is copyright (c) 2008 - 2015 by Elliot Shank.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+

@@ -1,11 +1,11 @@
 package Perl::Critic::Moose;
-# git description: v1.00-5-g5e3ddad
 
-$Perl::Critic::Moose::VERSION = '1.01';
 use 5.008;
 
 use strict;
 use warnings;
+
+our $VERSION = '1.02';
 
 1;
 
@@ -21,7 +21,7 @@ Perl::Critic::Moose - Policies for Perl::Critic concerned with using Moose
 
 =head1 VERSION
 
-version 1.01
+version 1.02
 
 =head1 DESCRIPTION
 

@@ -1,7 +1,9 @@
 package Perl::Critic::Policy::Moose::RequireCleanNamespace;
-$Perl::Critic::Policy::Moose::RequireCleanNamespace::VERSION = '1.01';
+
 use strict;
 use warnings;
+
+our $VERSION = '1.02';
 
 use Readonly ();
 
@@ -77,7 +79,7 @@ Perl::Critic::Policy::Moose::RequireCleanNamespace - Require removing implementa
 
 =head1 VERSION
 
-version 1.01
+version 1.02
 
 =head1 DESCRIPTION
 
