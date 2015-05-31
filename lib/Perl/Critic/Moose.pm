@@ -5,7 +5,7 @@ use 5.008;
 use strict;
 use warnings;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 1;
 
@@ -21,7 +21,7 @@ Perl::Critic::Moose - Policies for Perl::Critic concerned with using Moose
 
 =head1 VERSION
 
-version 1.02
+version 1.03
 
 =head1 DESCRIPTION
 
@@ -91,13 +91,17 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Jeffrey Ryan Thalhammer Shawn Moore
+=for stopwords Jeffrey Ryan Thalhammer Noel Maddy Shawn Moore
 
 =over 4
 
 =item *
 
 Jeffrey Ryan Thalhammer <jeff@thaljef.org>
+
+=item *
+
+Noel Maddy <zhtwnpanta@gmail.com>
 
 =item *
 

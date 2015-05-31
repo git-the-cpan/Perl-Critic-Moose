@@ -3,7 +3,7 @@ package Perl::Critic::Policy::Moose::RequireCleanNamespace;
 use strict;
 use warnings;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 use Readonly ();
 
@@ -44,6 +44,12 @@ sub violates {
     return if not $includes;
 
     for my $include ( @{$includes} ) {
+        # skip if nothing imported
+        if ( $include->type eq 'use' ) {
+            my $lists = $include->find('PPI::Structure::List');
+            next if $lists and not grep { $_->children > 0 } @{$lists};
+        }
+
         $modules{ $include->type }->{ $include->module } = 1;
     }
 
@@ -79,7 +85,7 @@ Perl::Critic::Policy::Moose::RequireCleanNamespace - Require removing implementa
 
 =head1 VERSION
 
-version 1.02
+version 1.03
 
 =head1 DESCRIPTION
 
@@ -110,6 +116,9 @@ can set the C<cleaners> option.
 
     [Moose::RequireCleanNamespace]
     cleaners = My::Cleaner
+
+If you use C<use> a module with an empty import list, then this module knows
+that nothing needs to be cleaned, and will ignore that particular import.
 
 =head1 SEE ALSO
 

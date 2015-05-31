@@ -9,7 +9,7 @@ BEGIN {
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::NoTabs 0.14
+# this test was generated with Dist::Zilla::Plugin::Test::NoTabs 0.15
 
 use Test::More 0.88;
 use Test::NoTabs;
@@ -21,7 +21,6 @@ my @files = (
     'lib/Perl/Critic/Policy/Moose/ProhibitNewMethod.pm',
     'lib/Perl/Critic/Policy/Moose/RequireCleanNamespace.pm',
     'lib/Perl/Critic/Policy/Moose/RequireMakeImmutable.pm',
-    't/00-compile.t',
     't/00-report-prereqs.dd',
     't/00-report-prereqs.t',
     't/Moose/ProhibitDESTROYMethod.run',
@@ -29,6 +28,7 @@ my @files = (
     't/Moose/ProhibitNewMethod.run',
     't/Moose/RequireCleanNamespace.run',
     't/Moose/RequireMakeImmutable.run',
+    't/author-00-compile.t',
     't/author-eol.t',
     't/author-no-tabs.t',
     't/author-pod-spell.t',

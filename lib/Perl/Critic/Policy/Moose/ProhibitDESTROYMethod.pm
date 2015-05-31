@@ -3,7 +3,7 @@ package Perl::Critic::Policy::Moose::ProhibitDESTROYMethod;
 use strict;
 use warnings;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 use Readonly ();
 
@@ -95,7 +95,7 @@ Perl::Critic::Policy::Moose::ProhibitDESTROYMethod - Use DEMOLISH instead of DES
 
 =head1 VERSION
 
-version 1.02
+version 1.03
 
 =head1 DESCRIPTION
 

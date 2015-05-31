@@ -3,7 +3,7 @@ package Perl::Critic::Policy::Moose::ProhibitNewMethod;
 use strict;
 use warnings;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 use Readonly ();
 
@@ -98,7 +98,7 @@ Perl::Critic::Policy::Moose::ProhibitNewMethod - Don't override Moose's standard
 
 =head1 VERSION
 
-version 1.02
+version 1.03
 
 =head1 DESCRIPTION
 

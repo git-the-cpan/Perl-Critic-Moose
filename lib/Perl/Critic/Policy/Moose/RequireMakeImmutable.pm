@@ -3,7 +3,7 @@ package Perl::Critic::Policy::Moose::RequireMakeImmutable;
 use strict;
 use warnings;
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 use Readonly ();
 
@@ -110,7 +110,7 @@ Perl::Critic::Policy::Moose::RequireMakeImmutable - Ensure that you've made your
 
 =head1 VERSION
 
-version 1.02
+version 1.03
 
 =head1 DESCRIPTION
 

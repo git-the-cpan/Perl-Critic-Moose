@@ -5,7 +5,7 @@ NAME
 
 VERSION
 
-    version 1.02
+    version 1.03
 
 DESCRIPTION
 
@@ -65,6 +65,8 @@ AUTHORS
 CONTRIBUTORS
 
       * Jeffrey Ryan Thalhammer <jeff@thaljef.org>
+
+      * Noel Maddy <zhtwnpanta@gmail.com>
 
       * Shawn Moore <cpan@sartak.org>
 
