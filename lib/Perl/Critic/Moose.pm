@@ -5,7 +5,7 @@ use 5.008;
 use strict;
 use warnings;
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 1;
 
@@ -21,9 +21,12 @@ Perl::Critic::Moose - Policies for Perl::Critic concerned with using Moose
 
 =head1 VERSION
 
-version 1.03
+version 1.04
 
 =head1 DESCRIPTION
+
+Some L<Perl::Critic> policies that will help you keep your code in good shape
+with regards to L<Moose>.
 
 The included policies are:
 
@@ -50,12 +53,12 @@ Require removing implementation details from you packages. [Severity: 3]
 Increase performance by freezing your class structures with
 C<< __PACKAGE__->meta()->make_immutable() >>. [Severity: 3]
 
+=item L<Perl::Critic::Policy::Moose::ProhibitLazyBuild>
+
+Prevent the use of C< lazy_build > which creates mutability
+problems and pollutes namespaces. [Severity: 2]
+
 =back
-
-=head1 DESCRIPTION
-
-Some L<Perl::Critic> policies that will help you keep your code in good shape
-with regards to L<Moose>.
 
 =head1 AFFILIATION
 
@@ -91,13 +94,21 @@ Dave Rolsky <autarch@urth.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Jeffrey Ryan Thalhammer Noel Maddy Shawn Moore
+=for stopwords Jeffrey Ryan Thalhammer Karen Etheridge Kieren Diment Noel Maddy Shawn Moore
 
 =over 4
 
 =item *
 
 Jeffrey Ryan Thalhammer <jeff@thaljef.org>
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=item *
+
+Kieren Diment <kieren.diment@hiivesystems.com>
 
 =item *
 

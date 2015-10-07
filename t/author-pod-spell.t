@@ -20,6 +20,7 @@ all_pod_files_spelling_ok( qw( bin lib  ) );
 __DATA__
 DROLSKY
 DROLSKY's
+PayPal
 Rolsky
 Rolsky's
 Elliot
@@ -31,6 +32,12 @@ Jeffrey
 Ryan
 Thalhammer
 jeff
+Karen
+Etheridge
+ether
+Kieren
+Diment
+kieren
 Noel
 Maddy
 zhtwnpanta
@@ -43,6 +50,7 @@ Critic
 Moose
 Policy
 ProhibitDESTROYMethod
+ProhibitLazyBuild
 ProhibitMultipleWiths
 ProhibitNewMethod
 RequireCleanNamespace

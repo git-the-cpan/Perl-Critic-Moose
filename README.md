@@ -5,9 +5,12 @@ NAME
 
 VERSION
 
-    version 1.03
+    version 1.04
 
 DESCRIPTION
+
+    Some Perl::Critic policies that will help you keep your code in good
+    shape with regards to Moose.
 
     The included policies are:
 
@@ -33,10 +36,10 @@ DESCRIPTION
       Increase performance by freezing your class structures with
       __PACKAGE__->meta()->make_immutable(). [Severity: 3]
 
-DESCRIPTION
+    Perl::Critic::Policy::Moose::ProhibitLazyBuild
 
-    Some Perl::Critic policies that will help you keep your code in good
-    shape with regards to Moose.
+      Prevent the use of  lazy_build  which creates mutability problems and
+      pollutes namespaces. [Severity: 2]
 
 AFFILIATION
 
@@ -65,6 +68,10 @@ AUTHORS
 CONTRIBUTORS
 
       * Jeffrey Ryan Thalhammer <jeff@thaljef.org>
+
+      * Karen Etheridge <ether@cpan.org>
+
+      * Kieren Diment <kieren.diment@hiivesystems.com>
 
       * Noel Maddy <zhtwnpanta@gmail.com>
 

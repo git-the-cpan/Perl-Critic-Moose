@@ -3,7 +3,7 @@ package Perl::Critic::Policy::Moose::ProhibitDESTROYMethod;
 use strict;
 use warnings;
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 use Readonly ();
 
@@ -21,8 +21,9 @@ sub supported_parameters {
             name => 'equivalent_modules',
             description =>
                 q<The additional modules to treat as equivalent to "Moose", "Moose::Role", or "MooseX::Role::Parameterized".>,
-            behavior                   => 'string list',
-            list_always_present_values => [qw< Moose Moose::Role MooseX::Role::Parameterized >],
+            behavior => 'string list',
+            list_always_present_values =>
+                [qw< Moose Moose::Role MooseX::Role::Parameterized >],
         },
     );
 }
@@ -95,7 +96,7 @@ Perl::Critic::Policy::Moose::ProhibitDESTROYMethod - Use DEMOLISH instead of DES
 
 =head1 VERSION
 
-version 1.03
+version 1.04
 
 =head1 DESCRIPTION
 

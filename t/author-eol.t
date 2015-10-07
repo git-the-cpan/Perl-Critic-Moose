@@ -17,6 +17,7 @@ use Test::EOL;
 my @files = (
     'lib/Perl/Critic/Moose.pm',
     'lib/Perl/Critic/Policy/Moose/ProhibitDESTROYMethod.pm',
+    'lib/Perl/Critic/Policy/Moose/ProhibitLazyBuild.pm',
     'lib/Perl/Critic/Policy/Moose/ProhibitMultipleWiths.pm',
     'lib/Perl/Critic/Policy/Moose/ProhibitNewMethod.pm',
     'lib/Perl/Critic/Policy/Moose/RequireCleanNamespace.pm',
@@ -24,14 +25,17 @@ my @files = (
     't/00-report-prereqs.dd',
     't/00-report-prereqs.t',
     't/Moose/ProhibitDESTROYMethod.run',
+    't/Moose/ProhibitLazyBuild.run',
     't/Moose/ProhibitMultipleWiths.run',
     't/Moose/ProhibitNewMethod.run',
     't/Moose/RequireCleanNamespace.run',
     't/Moose/RequireMakeImmutable.run',
     't/author-00-compile.t',
     't/author-eol.t',
+    't/author-mojibake.t',
     't/author-no-tabs.t',
     't/author-pod-spell.t',
+    't/author-test-version.t',
     't/policies.t',
     't/release-cpan-changes.t',
     't/release-pod-linkcheck.t',
@@ -39,7 +43,7 @@ my @files = (
     't/release-pod-syntax.t',
     't/release-portability.t',
     't/release-synopsis.t',
-    't/release-test-version.t'
+    't/release-tidyall.t'
 );
 
 eol_unix_ok($_, { trailing_whitespace => 1 }) foreach @files;

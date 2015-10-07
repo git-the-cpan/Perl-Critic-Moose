@@ -10,15 +10,16 @@ use 5.006;
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.052
+# this test was generated with Dist::Zilla::Plugin::Test::Compile 2.054
 
 use Test::More;
 
-plan tests => 7;
+plan tests => 8;
 
 my @module_files = (
     'Perl/Critic/Moose.pm',
     'Perl/Critic/Policy/Moose/ProhibitDESTROYMethod.pm',
+    'Perl/Critic/Policy/Moose/ProhibitLazyBuild.pm',
     'Perl/Critic/Policy/Moose/ProhibitMultipleWiths.pm',
     'Perl/Critic/Policy/Moose/ProhibitNewMethod.pm',
     'Perl/Critic/Policy/Moose/RequireCleanNamespace.pm',
@@ -48,6 +49,9 @@ for my $lib (@module_files)
     my @_warnings = <$stderr>;
     waitpid($pid, 0);
     is($?, 0, "$lib loaded ok");
+
+    shift @_warnings if @_warnings and $_warnings[0] =~ /^Using .*\bblib/
+        and not eval { require blib; blib->VERSION('1.01') };
 
     if (@_warnings)
     {

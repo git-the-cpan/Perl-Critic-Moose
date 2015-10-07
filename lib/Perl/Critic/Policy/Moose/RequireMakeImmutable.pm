@@ -3,7 +3,7 @@ package Perl::Critic::Policy::Moose::RequireMakeImmutable;
 use strict;
 use warnings;
 
-our $VERSION = '1.03';
+our $VERSION = '1.04';
 
 use Readonly ();
 
@@ -19,19 +19,19 @@ Readonly::Scalar my $EXPLANATION =>
 sub supported_parameters {
     return (
         {
-            name            => 'equivalent_modules',
-            description     =>
+            name => 'equivalent_modules',
+            description =>
                 q<The additional modules to treat as equivalent to "Moose".>,
-            default_string  => 'Moose',
-            behavior        => 'string list',
+            default_string             => 'Moose',
+            behavior                   => 'string list',
             list_always_present_values => [qw< Moose >],
         },
     );
 }
 
-sub default_severity     { return $SEVERITY_MEDIUM; }
-sub default_themes       { return qw( moose performance ); }
-sub applies_to           { return 'PPI::Document' }
+sub default_severity { return $SEVERITY_MEDIUM; }
+sub default_themes   { return qw( moose performance ); }
+sub applies_to       { return 'PPI::Document' }
 
 sub prepare_to_scan_document {
     my ( $self, $document ) = @_;
@@ -110,7 +110,7 @@ Perl::Critic::Policy::Moose::RequireMakeImmutable - Ensure that you've made your
 
 =head1 VERSION
 
-version 1.03
+version 1.04
 
 =head1 DESCRIPTION
 
